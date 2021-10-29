@@ -1,0 +1,25 @@
+// 默认颜色
+$default-color: #F7992B;
+$default-color-hover: #e47d07;
+// 危险色
+$danger-color: #ff0000;
+$danger-color-hover: #c90202;
+// 背景色
+$default-bg-color: #fff;
+// 单行超出使用省略号
+@mixin overflowEllipsis{
+  overflow: hidden;/*超出隐藏*/
+  white-space: nowrap;/*文本不会换行*/
+  text-overflow: ellipsis;/*当文本溢出包含元素时，以省略号表示超出的文本*/
+}
+// 文字禁止选中
+@mixin textNotAllowSelect{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
