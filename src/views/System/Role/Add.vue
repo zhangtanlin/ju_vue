@@ -2,21 +2,21 @@
   <div class="add">
     <div class="add-box">
       <div class="list">
-        <label for="account">用户名</label>
+        <label for="account">角色名</label>
         <div class="input-box">
           <input
             v-model="formData.account"
             id="account"
             type="text"
-            name="account"
+            name="name"
             autocomplete="on"
-            placeholder="请输入用户名"
+            placeholder="请输入角色名"
           >
         </div>
       </div>
       <div class="prompt">{{ formData.promptAccount }}</div>
       <div class="list">
-        <label for="pwd">密码</label>
+        <label for="pwd">资源</label>
         <div class="input-box">
           <input
             v-model="formData.password"
@@ -24,13 +24,13 @@
             type="password"
             name="password"
             autocomplete="on"
-            placeholder="请输入用户名"
+            placeholder="请输入资源"
           >
         </div>
       </div>
       <div class="prompt">{{ formData.promptPassword }}</div>
       <div class="list">
-        <label for="verify-pwd">确认密码</label>
+        <label for="verify-pwd">类型</label>
         <div class="input-box">
           <input
             v-model="formData.verifyPassword"
@@ -56,12 +56,9 @@ export default {
   setup(props, context) {
     // 定义
     let formData = reactive({
-      account: '',
-      password: '',
-      verifyPassword: '',
-      promptAccount: '',
-      promptPassword: '',
-      promptVerifyPassword: ''
+      name: '',
+      resources: '',
+      type: '',
     });
     // 提交
     const onSubmit = async () => {

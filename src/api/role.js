@@ -10,5 +10,5 @@ import { axiosPost } from "../utils/axios"
  * @param {number} [data.pageSize]    - 每页显示的条数
  */
 export const apiRoleList = (data) => {
-  return axiosPost('/admin/role', data)
+  return axiosPost('/admin/role/list', data)
 }

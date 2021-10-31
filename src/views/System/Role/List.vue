@@ -3,7 +3,7 @@
     <div class="user-box">
       <div class="form">
         <div class="item-box">
-          <label>账号</label>
+          <label>ID</label>
           <div class="value-box">
             <InputBox v-model:value="form.id" placeholder="请输入账号" />
           </div>
@@ -23,7 +23,7 @@
         <div class="item-box">
           <label>类型</label>
           <div class="value-box">
-            <InputBox v-model:value="form.type" placeholder="请输入类型" />
+            <SelectBox v-model:value="form.status" :list="selectStatus" />
           </div>
         </div>
         <div class="item-box">
@@ -77,14 +77,15 @@ import {
   apiUserDelete,
 } from "@/api/role";
 import InputBox from "@/components/InputBox.vue";
+import SelectBox from "@/components/SelectBox.vue";
 import TableBox from "@/components/TableBox";
 import PaginationBox from "@/components/PaginationBox";
 import { removeEmpty } from "@/utils/tools";
 import PopupBox from "@/components/PopupBox.vue";
 import Btn from "@/components/Btn.vue";
-import Add from "../User/Add.vue";
-import Edit from "../User/Edit.vue";
-import Show from "../User/Show.vue";
+import Add from "./Add.vue";
+import Edit from "./Edit.vue";
+import Show from "./Show.vue";
 import emitter from "@/utils/mitt.js";
 import { ref, reactive } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";
@@ -92,6 +93,7 @@ export default {
   name: "RoleList",
   components: {
     InputBox,
+    SelectBox,
     TableBox,
     PaginationBox,
     PopupBox,
@@ -101,6 +103,25 @@ export default {
     Btn,
   },
   setup() {
+    // 定义
+    const selectStatus = [
+      {
+        id: "1",
+        name: "超级管理员",
+      },
+      {
+        id: "2",
+        name: "操作员",
+      },
+      {
+        id: "3",
+        name: "审计员",
+      },
+      {
+        id: "4",
+        name: "其他",
+      },
+    ]; // 类型{1:超级管理员,2:操作员,3:审计员, 4:其他}
     // 列表头部
     const listHeader = [
       {
@@ -158,20 +179,20 @@ export default {
         pageSize: pagination.pageSize,
       }};
       try {
-        const getApiRoleList = await apiRoleList(obj);
-        console.log('getApiRoleList', getApiRoleList)
-        if (getApiRoleList?.status === 200) {
-          list.value = getApiRoleList.data.list;
-          pagination.total = Number(getApiRoleList.data.total);
+        const res = await apiRoleList(obj);
+        console.log('res', res)
+        if (res?.status === 200) {
+          list.value = res.data.list;
+          pagination.total = Number(res.data.total);
         } else {
           emitter.emit("toast", {
-            title: getApiRoleList?.message || '请求列表失败',
+            title: res?.message || '请求列表失败',
             show: true,
           });
         }
       } catch (error) {
         emitter.emit("toast", {
-          title: error,
+          title: '请求失败',
           show: true,
         });
       }
@@ -294,6 +315,7 @@ export default {
       popup.show = !popup.show ?? false;
     };
     return {
+      selectStatus,
       form,
       pagination,
       listHeader,
