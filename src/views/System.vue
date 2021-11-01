@@ -120,11 +120,13 @@ export default {
     align-items: center;
     justify-content: space-between;
     .header-logo {
+      width: 9rem;
       height: 30px;
-      width: 30px;
-      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       img {
-        width: 100%;
+        width: auto;
         height: 100%;
         display: block;
       }
