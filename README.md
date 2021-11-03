@@ -1,4 +1,4 @@
-# juguo
+# ju_vue
 
 ## Project setup
 ```
