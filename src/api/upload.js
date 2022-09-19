@@ -6,7 +6,7 @@ import { axiosPost } from '../utils/axios'
  * @param {string} [data.md5] - md5值
  */
  export const apiUploadVideoBefore = (data) => {
-  return axiosPost('/admin/video/uploadBefore', data)
+  return axiosPost('/admin/upload/video_before', data)
 }
 
 /**
@@ -15,7 +15,7 @@ import { axiosPost } from '../utils/axios'
  * @param {string} [data.md5] - md5值
  */
  export const apiUploadVideo = (data) => {
-  return axiosPost('/admin/video/upload',
+  return axiosPost('/admin/upload/video',
     data,
     {
       "Content-Type": "multipart/form-data" 

@@ -9,6 +9,21 @@ import { axiosPost } from "../utils/axios"
  * @param {number} [data.currentPage] - 页码
  * @param {number} [data.pageSize]    - 每页显示的条数
  */
-export const apiRoleList = (data) => {
+ export const apiRoleList = (data) => {
   return axiosPost('/admin/role/list', data)
+}
+
+// 添加
+export const apiUserAdd = (data) => {
+  return axiosPost('/admin/role/add', data)
+}
+
+// 编辑
+export const apiUserEdit = (data) => {
+  return axiosPost('/admin/role/edit', data)
+}
+
+// 删除
+export const apiUserDelete = (data) => {
+  return axiosPost('/admin/role/delete', data)
 }
